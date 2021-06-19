@@ -13,5 +13,5 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('', [ App\Http\Controllers\Website\HomeController::class,'index' ]);
-
+Route::get('', [ App\Http\Controllers\Website\HomeController::class,'index' ])->name('Home');
+Route::post('input', [ App\Http\Controllers\Website\HomeController::class,'input' ])->name('Input');

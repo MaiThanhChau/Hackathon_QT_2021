@@ -153,7 +153,7 @@
   }
   
 </style>
-
+<title>Trợ lý ảo</title>
 <section class="msger">
   <header class="msger-header">
     <div class="msger-header-title">
@@ -186,8 +186,8 @@
     
   </main>
 
-  <form class="msger-inputarea">
-    <input type="text" class="msger-input" placeholder="Hỏi gì đó...">
+  <form class="msger-inputarea" action="{{ route('Input') }}" method ="post">
+    <input type="text" class="msger-input" placeholder="Nhập tin nhắn">
     <button type="submit" class="msger-send-btn">Gửi</button>
   </form>
 </section>
@@ -197,11 +197,11 @@ const msgerInput = get(".msger-input");
 const msgerChat = get(".msger-chat");
 
 const BOT_MSGS = [
-  "Hi, how are you?",
-  "Ohh... I can't understand what you trying to say. Sorry!",
-  "I like to play games... But I don't know how to play!",
-  "Sorry if my answers are not relevant. :))",
-  "I feel sleepy! :("
+  "Bạn có khỏe không ?",
+  "Tôi không hiểu bạn nói gì cả!",
+  "Tôi thích bạn!",
+  "Xin lỗi thứ bạn tìm không có trong kho dữ liệu của tôi",
+  "Không có gì! :("
 ];
 
 // Icons made by Freepik from www.flaticon.com

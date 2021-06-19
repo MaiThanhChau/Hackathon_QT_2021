@@ -11,4 +11,8 @@ class HomeController extends Controller
     public function index(){       
         return view('website.index');
     }
+    public function input(Request $request){       
+        $input = $request->all();
+        dd( $input );
+    }
 }
