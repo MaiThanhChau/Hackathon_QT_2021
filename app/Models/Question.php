@@ -10,10 +10,10 @@ class Question extends Model
 {
     use HasFactory;
     protected $table = 'questions';
-    public $primaryKey = 'id_question';
+    public $primaryKey = 'id';
     public $timestamps = FALSE;
     public function answer()
     {
-        return $this->hasMany(Answer::class, 'id_question', 'id_answer');
+        return $this->hasMany(Answer::class, 'id_answer', 'id');
     }
 }

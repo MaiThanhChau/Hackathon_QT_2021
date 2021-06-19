@@ -18,6 +18,7 @@ class answerController extends Controller
     public function index()
     {
         $answers = Answer::all();
+
         return view('admin.answer.list', compact('answers'));
     }
 

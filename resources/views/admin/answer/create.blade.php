@@ -14,7 +14,7 @@
                 <label>Question Name</label>
                 <select class="form-control" name="id_question">
                 @foreach($questions as $question)
-                <option value="{{ $question->id_question }}">{{ $question->question }}</option>
+                <option value="{{ $question->id }}">{{ $question->question }}</option>
                 @endforeach
                 </select>
             </div>

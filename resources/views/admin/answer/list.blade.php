@@ -40,15 +40,11 @@
                                 </thead>
                                 <tbody>
                                 @foreach($answers as $key => $answer)
-                                    <?php
-                                    echo '<pre>';
-                                        print_r( $answer->quest );
-                                    echo '</pre>';
-                                    ?>
+ 
                                     <tr>
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $answer->title }}</td>
-                                        <td></td>
+                                        <td>{{ $answer->quest->question }}</td>
                                         <td>
                                             <form action="{{ route('answer.edit', 1) }}" method="get">
                                                 @csrf
