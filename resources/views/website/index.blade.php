@@ -165,7 +165,14 @@
   </header>
 
   <main class="msger-chat">
-    <div class="msg left-msg">
+  @foreach( $items as $item )
+    <?php
+      $class = 'left';
+      if( $item->user_id == $current_user_id ){
+        $class = 'right';
+      }
+    ?>
+    <div class="msg {{ $class }}-msg">
       <div
        class="msg-img"
        style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"
@@ -173,16 +180,24 @@
 
       <div class="msg-bubble">
         <div class="msg-info">
-          <div class="msg-info-name">BOT</div>
+          <div class="msg-info-name">
+          <?php if( $item->user_id == $current_user_id ): ?>
+              Me
+          <?php else: ?>
+              Bot
+          <?php endif; ?>
+          </div>
           <div class="msg-info-time">12:45</div>
         </div>
 
         <div class="msg-text">
-          Xin chào bạn đến với Trợ lý ảo, tôi có thể giúp gì được cho bạn ? 😄
+          
+          {{ $item->content }}
         </div>
       </div>
     </div>
 
+  @endforeach
     
   </main>
 
