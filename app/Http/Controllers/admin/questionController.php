@@ -4,6 +4,8 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Question;
+use Illuminate\Support\Facades\Session;
 
 class questionController extends Controller
 {
@@ -14,7 +16,8 @@ class questionController extends Controller
      */
     public function index()
     {
-        return view('admin.question.list');
+        $questions = Question::all();
+        return view('admin.question.list', compact('questions'));
     }
 
     /**
@@ -35,7 +38,12 @@ class questionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $question = new Question();
+        $question->question = $request->name;
+        // dd($question);
+        $question->save();
+        Session::flash('success', 'Create Successfully');
+        return redirect()->route('question.index');
     }
 
     /**
@@ -57,7 +65,8 @@ class questionController extends Controller
      */
     public function edit($id)
     {
-        echo $id;
+        $question = Question::find($id);
+        return view('admin.question.edit', compact('question'));
     }
 
     /**
@@ -69,7 +78,11 @@ class questionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $question = Question::find($id);
+        $question->question = $request->name;
+        $question->save();
+        Session::flash('success', 'Update Successfully');
+        return redirect()->route('question.index');
     }
 
     /**
@@ -80,6 +93,9 @@ class questionController extends Controller
      */
     public function destroy($id)
     {
-        echo $id;
+        $question = Question::find($id);
+        $question->delete();
+        Session::flash('success', 'Delete Successfully');
+        return redirect()->route('question.index');
     }
 }

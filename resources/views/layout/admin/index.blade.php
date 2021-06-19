@@ -100,6 +100,7 @@
     <script src="{{ url('/admin') }}/dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ url('/admin') }}/dist/js/pages/dashboard3.js"></script>
+    
 </body>
 
 </html>
