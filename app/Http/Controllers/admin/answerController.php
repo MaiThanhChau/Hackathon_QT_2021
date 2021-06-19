@@ -4,6 +4,8 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Answer;
+use App\Models\Question;
 
 class answerController extends Controller
 {
@@ -14,7 +16,8 @@ class answerController extends Controller
      */
     public function index()
     {
-        //
+        $answers = Answer::all();
+        return view('admin.answer.list', compact('answers'));
     }
 
     /**
@@ -24,7 +27,8 @@ class answerController extends Controller
      */
     public function create()
     {
-        //
+        $questions = Question::all();
+        return view('admin.answer.create', compact('questions'));
     }
 
     /**
