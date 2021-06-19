@@ -187,7 +187,8 @@
   </main>
 
   <form class="msger-inputarea" action="{{ route('Input') }}" method ="post">
-    <input type="text" class="msger-input" placeholder="Nhập tin nhắn">
+  @csrf
+    <input type="text" class="msger-input" name="input" placeholder="Nhập tin nhắn">
     <button type="submit" class="msger-send-btn">Gửi</button>
   </form>
 </section>
@@ -210,7 +211,7 @@ const PERSON_IMG = "https://image.flaticon.com/icons/svg/145/145867.svg";
 const BOT_NAME = "BOT";
 const PERSON_NAME = "Me";
 
-msgerForm.addEventListener("submit", event => {
+msgerForm.addEventListener("submit1", event => {
   event.preventDefault();
 
   const msgText = msgerInput.value;

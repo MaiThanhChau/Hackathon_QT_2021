@@ -12,7 +12,7 @@ class HomeController extends Controller
         return view('website.index');
     }
     public function input(Request $request){       
-        $input = $request->all();
-        dd( $input );
+        $input = $request->input;
+        if( 
     }
 }
