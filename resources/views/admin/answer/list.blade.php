@@ -15,6 +15,9 @@
                                 <div class="btn-group" role="group" aria-label="First group">
                                     <h3 class="card-title">List</h3>
                                 </div>
+                                @if(Session::has('success'))
+                                    <span style="color: green">{{ Session::get('success') }}</span>
+                                @endif
                                 <div class="input-group">
                                     <form action="{{ route('answer.create') }}" method="get">
                                         @csrf
@@ -30,17 +33,22 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
+                                        <th>Title</th>
                                         <th>Question Name</th>
                                         <th colspan="2" style="width: 20%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($answers as $key => $answer)
+                                    <?php
+                                    echo '<pre>';
+                                        print_r( $answer->quest );
+                                    echo '</pre>';
+                                    ?>
                                     <tr>
                                         <td>{{ ++$key }}</td>
-                                        <td>{{ $answer->answer }}</td>
-                                        <td>{{ $answer->question->question }}</td>
+                                        <td>{{ $answer->title }}</td>
+                                        <td></td>
                                         <td>
                                             <form action="{{ route('answer.edit', 1) }}" method="get">
                                                 @csrf
@@ -51,11 +59,11 @@
                                             <form action="{{ route('answer.destroy', 1) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <button class="btn btn-danger">Delete</button>
+                                                <button class="btn btn-danger" onclick="return confirm('Are you sure to delete?')">Delete</button>
                                             </form>
                                         </td>
                                     </tr>
-                                    @endforeach
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

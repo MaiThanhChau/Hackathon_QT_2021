@@ -12,7 +12,7 @@ class Answer extends Model
     public $primaryKey = 'id_answer';
     protected $table = 'answers';
     public $timestamps = FALSE;
-    public function question()
+    public function quest()
     {
         return $this->belongsTo(Question::class, 'id_answer', 'id_question');
     }

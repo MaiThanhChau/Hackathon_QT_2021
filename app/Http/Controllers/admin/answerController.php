@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Answer;
 use App\Models\Question;
+use Illuminate\Support\Facades\Session;
 
 class answerController extends Controller
 {
@@ -39,7 +40,19 @@ class answerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $answer = new Answer();
+        $answer->id_question = $request->id_question;
+        $answer->title = $request->title;
+        $answer->answer = $request->answer;
+        if ($request->hasFile('file')) {
+            $file = $request->file;
+            $path = $file->store('images', 'public');
+            $answer->file = $path;
+        }
+        $answer->save();
+        Session::flash('success', 'Add Successfully');
+        return redirect()->route('answer.index');
     }
 
     /**
@@ -84,6 +97,9 @@ class answerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $answer = Answer::find($id);
+        $answer->delete();
+        Session::flash('success', 'Delete Successfully');
+        return redirect()->route('answer.index');
     }
 }
