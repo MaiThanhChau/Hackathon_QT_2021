@@ -1,6 +1,6 @@
-@extends('layout.admin.index')
-@section('title', 'Answer List')
-@section('content')
+
+<?php $__env->startSection('title', 'Answer List'); ?>
+<?php $__env->startSection('content'); ?>
     <?php
         // dd($answers[0]->question->question);
     ?>
@@ -15,12 +15,12 @@
                                 <div class="btn-group" role="group" aria-label="First group">
                                     <h3 class="card-title">List</h3>
                                 </div>
-                                @if(Session::has('success'))
-                                    <span style="color: green">{{ Session::get('success') }}</span>
-                                @endif
+                                <?php if(Session::has('success')): ?>
+                                    <span style="color: green"><?php echo e(Session::get('success')); ?></span>
+                                <?php endif; ?>
                                 <div class="input-group">
-                                    <form action="{{ route('answer.create') }}" method="get">
-                                        @csrf
+                                    <form action="<?php echo e(route('answer.create')); ?>" method="get">
+                                        <?php echo csrf_field(); ?>
                                         <button class="btn btn-success" style="margin-right: 2px">Add</button>
                                     </form>
                                 </div>
@@ -39,27 +39,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($answers as $key => $answer)
+                                <?php $__currentLoopData = $answers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $answer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
  
                                     <tr>
-                                        <td>{{ ++$key }}</td>
-                                        <td>{{ $answer->title }}</td>
-                                        <td>{{ $answer->quest->question }}</td>
+                                        <td><?php echo e(++$key); ?></td>
+                                        <td><?php echo e($answer->title); ?></td>
+                                        <td><?php echo e($answer->quest->question); ?></td>
                                         <td>
-                                            <form action="{{ route('answer.edit', $answer->id) }}" method="get">
-                                                @csrf
+                                            <form action="<?php echo e(route('answer.edit', $answer->id)); ?>" method="get">
+                                                <?php echo csrf_field(); ?>
                                                 <button class="btn btn-warning">Edit</button>
                                             </form>
                                         </td>
                                         <td>
-                                            <form action="{{ route('answer.destroy', $answer->id) }}" method="post">
-                                                @csrf
-                                                @method('delete')
+                                            <form action="<?php echo e(route('answer.destroy', $answer->id)); ?>" method="post">
+                                                <?php echo csrf_field(); ?>
+                                                <?php echo method_field('delete'); ?>
                                                 <button class="btn btn-danger" onclick="return confirm('Are you sure to delete?')">Delete</button>
                                             </form>
                                         </td>
                                     </tr>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
                             </table>
                         </div>
@@ -73,4 +73,5 @@
         </div>
         <!-- /.container-fluid -->
     </section>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.admin.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\CodeGym\Hackathon_QT_2021\resources\views/admin/answer/list.blade.php ENDPATH**/ ?>
