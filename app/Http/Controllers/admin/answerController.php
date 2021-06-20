@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Answer;
 use App\Models\Question;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+
 
 class answerController extends Controller
 {
@@ -48,7 +50,7 @@ class answerController extends Controller
         $answer->answer = $request->answer;
         if ($request->hasFile('file')) {
             $file = $request->file;
-            $path = $file->store('images', 'public');
+            $path = $file->store('source', 'public');
             $answer->file = $path;
         }
         $answer->save();
@@ -75,7 +77,9 @@ class answerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $answer = Answer::find($id);
+        $questions = Question::all();
+        return view('admin.answer.edit', compact('questions', 'answer'));
     }
 
     /**
@@ -87,7 +91,26 @@ class answerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $answer = Answer::find($id);
+        $answer->id_question = $request->id_question;
+        $answer->title = $request->title;
+        $answer->answer = $request->answer;
+        if ($request->hasFile('file')) {
+
+            //xoa anh cu neu co
+            $currentFile = $answer->file;
+            if ($currentFile) {
+                Storage::delete('/public/' . $currentFile);
+            }
+            // cap nhat anh moi
+            $file = $request->file;
+            $path = $file->store('source', 'public');
+            $answer->file = $path;
+        }
+        $answer->save();
+        Session::flash('success', 'Update Successfully');
+        return redirect()->route('answer.index');
+
     }
 
     /**
@@ -99,6 +122,10 @@ class answerController extends Controller
     public function destroy($id)
     {
         $answer = Answer::find($id);
+        $file = $answer->file;
+        if ($file) {
+            Storage::delete('/public/' . $file);
+        }
         $answer->delete();
         Session::flash('success', 'Delete Successfully');
         return redirect()->route('answer.index');

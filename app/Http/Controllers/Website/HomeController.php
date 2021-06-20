@@ -25,12 +25,12 @@ class HomeController extends Controller
         $chat->save();
 
         
-
+        $answer = 'xin chào';
         //bot trả lời
         $chat = new Chats();
         $chat->user_id = 0;
         $chat->to_user_id = 1;
-        $chat->content = $input;
+        $chat->content = $answer;
         $chat->save();
         return redirect()->route('Home');
     }
