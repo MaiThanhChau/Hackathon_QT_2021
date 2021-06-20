@@ -19,10 +19,9 @@
                                     <span style="color: green">{{ Session::get('success') }}</span>
                                 @endif
                                 <div class="input-group">
-                                    <form action="{{ route('question.create') }}" method="get">
-                                        @csrf
+                                    <a href="{{ route('question.create') }}" method="get">
                                         <button class="btn btn-success" style="margin-right: 2px">Add</button>
-                                    </form>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -43,13 +42,12 @@
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $question->question }}</td>
                                         <td>
-                                            <form action="{{ route('question.edit', $question->id_question) }}" method="get">
-                                                @csrf
+                                            <a href="{{ route('question.edit', $question->id) }}" method="get">
                                                 <button class="btn btn-warning">Edit</button>
-                                            </form>
+                                            </a>
                                         </td>
                                         <td>
-                                            <form action="{{ route('question.destroy', $question->id_question) }}" method="post">
+                                            <form action="{{ route('question.destroy', $question->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <button class="btn btn-danger" onclick="return confirm('Are you sure to delete?')">Delete</button>

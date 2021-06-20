@@ -35,27 +35,20 @@
                with font-awesome or any other icon font library -->
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="<?php echo e(route('question.index')); ?>" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
-                                    Tables
-                                    <i class="fas fa-angle-left right"></i>
+                                    Question
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Question</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Answer</p>
-                                    </a>
-                                </li>
-                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo e(route('answer.index')); ?>" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Answer
+                                </p>
+                            </a>
                         </li>
                     </ul>
                 </nav>

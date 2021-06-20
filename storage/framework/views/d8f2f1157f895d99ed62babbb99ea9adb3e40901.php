@@ -19,10 +19,9 @@
                                     <span style="color: green"><?php echo e(Session::get('success')); ?></span>
                                 <?php endif; ?>
                                 <div class="input-group">
-                                    <form action="<?php echo e(route('answer.create')); ?>" method="get">
-                                        <?php echo csrf_field(); ?>
+                                    <a href="<?php echo e(route('answer.create')); ?>" method="get">
                                         <button class="btn btn-success" style="margin-right: 2px">Add</button>
-                                    </form>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -46,10 +45,9 @@
                                         <td><?php echo e($answer->title); ?></td>
                                         <td><?php echo e($answer->quest->question); ?></td>
                                         <td>
-                                            <form action="<?php echo e(route('answer.edit', $answer->id)); ?>" method="get">
-                                                <?php echo csrf_field(); ?>
+                                            <a href="<?php echo e(route('answer.edit', $answer->id)); ?>" method="get">
                                                 <button class="btn btn-warning">Edit</button>
-                                            </form>
+                                            </a>
                                         </td>
                                         <td>
                                             <form action="<?php echo e(route('answer.destroy', $answer->id)); ?>" method="post">

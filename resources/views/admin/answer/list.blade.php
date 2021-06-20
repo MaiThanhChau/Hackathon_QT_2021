@@ -19,10 +19,9 @@
                                     <span style="color: green">{{ Session::get('success') }}</span>
                                 @endif
                                 <div class="input-group">
-                                    <form action="{{ route('answer.create') }}" method="get">
-                                        @csrf
+                                    <a href="{{ route('answer.create') }}" method="get">
                                         <button class="btn btn-success" style="margin-right: 2px">Add</button>
-                                    </form>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -46,10 +45,9 @@
                                         <td>{{ $answer->title }}</td>
                                         <td>{{ $answer->quest->question }}</td>
                                         <td>
-                                            <form action="{{ route('answer.edit', $answer->id) }}" method="get">
-                                                @csrf
+                                            <a href="{{ route('answer.edit', $answer->id) }}" method="get">
                                                 <button class="btn btn-warning">Edit</button>
-                                            </form>
+                                            </a>
                                         </td>
                                         <td>
                                             <form action="{{ route('answer.destroy', $answer->id) }}" method="post">
