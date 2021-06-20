@@ -34,8 +34,19 @@
                 </div>
 
                 <div class="msg-text">
-
-                    {{ $item->content }}
+                    <div class="text">        
+                    <?= $item->content;?>
+                    </div>
+                    
+                    @if( $item->file )
+                    <audio controls 
+                    <?= ($item->id == $last_id) ? 'autoplay' : '';?> 
+                    style="display:none;">
+                      <!-- <source src="{{ asset('storage/'.$item->file) }}" type="audio/mpeg"> -->
+                      <source src="{{ Storage::url($item->file) }}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                    </audio>
+                    @endif
                 </div>
             </div>
         </div>

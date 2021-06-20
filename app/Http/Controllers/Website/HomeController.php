@@ -6,16 +6,28 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Models\Chats;
+use App\Models\Question;
 class HomeController extends Controller
 {
     public function index(){ 
         $items = Chats::where('user_id','=',1)->orwhere('to_user_id','=',1)->get();
         $current_user_id = 1;
+
+        $last_id = session('last_id',0);
         
-        return view('website.index', compact('items','current_user_id'));
+        
+        return view('website.index', compact('items','current_user_id','last_id'));
     }
     public function input(Request $request){       
         $input = $request->input;
+
+
+        //phân tích từ khóa và tìm kiếm
+        $question = Question::where('question', 'like', "%$input%")->first();
+        
+        
+       
+        
 
         //lưu tin nhắn của người dùng
         $chat = new Chats();
@@ -24,15 +36,39 @@ class HomeController extends Controller
         $chat->content = $input;
         $chat->save();
 
-        
-        $answer = 'xin chào';
+
         //bot trả lời
         $chat = new Chats();
         $chat->user_id = 0;
         $chat->to_user_id = 1;
-        $chat->content = $answer;
+
+        if( $question ){
+            $total_answers = $question->answer->count();
+
+            //trả về kết quả ngẫu nhiên
+            $index = rand(0,$total_answers - 1);
+            $answer = $question->answer[$index];
+
+            $chat->content = $answer->answer;
+            if( $answer->file ){
+                $chat->file = $answer->file;
+            }
+        }else{
+            $chat->content = 'Không hiểu';
+            $chat->file = 'source/notfound.mp3';
+        }
+
         $chat->save();
+
+        
+
+        session(['last_id' => $chat->id]);
+
         return redirect()->route('Home');
+    }
+
+    private function _get_random(){
+
     }
   
 }
