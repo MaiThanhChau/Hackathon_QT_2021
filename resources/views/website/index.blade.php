@@ -155,6 +155,11 @@
 </style>
 <title>Trợ lý ảo</title>
 <section class="msger">
+  @if (Session::has('success'))
+        <div class="login-fail">
+            <p class="text-success">{{ Session::get('success') }}</p>
+        </div>
+  @endif
   <header class="msger-header">
     <div class="msger-header-title">
       <i class="fas fa-comment-alt"></i> Trợ lý ảo
@@ -163,6 +168,8 @@
       <span><i class="fas fa-cog"></i></span>
     </div>
   </header>
+
+  
 
   <main class="msger-chat">
   @foreach( $items as $item )

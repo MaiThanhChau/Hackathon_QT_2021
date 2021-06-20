@@ -34,7 +34,5 @@ class HomeController extends Controller
         $chat->save();
         return redirect()->route('Home');
     }
-    public function login(){ 
-        return view('website.login');
-    }
+  
 }

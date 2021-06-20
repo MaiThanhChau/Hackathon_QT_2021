@@ -73,25 +73,32 @@
     <div class="content">
 
 <div class="title m-b-md">
-        Đăng nhập trợ lý ảo
+        Đăng ký trợ lý ảo
     </div>
     <div class="form-login">
-        <form class="text-left" method="post" action="{{ route('postLogin') }}">
-        {{ csrf_field() }}
-            @if (Session::has('fail-login'))
-                <div class="login-fail">
-                    <p class="text-danger">{{ Session::get('fail-login') }}</p>
-                </div>
-            @endif
+        <form class="text-left" method="post" action="{{ route('postSignup') }}">
+            @csrf
+
+            <div class="form-group">
+                <label for="inputUsername">Tên đăng ký</label>
+                <input type="text"
+                       class="form-control"
+                       id="inputUsername"
+                       name="username"
+                       placeholder="Enter username"
+                       required>
+            </div>
+
             <div class="form-group">
                 <label for="inputUsername">Email</label>
                 <input type="text"
                        class="form-control"
                        id="inputUsername"
                        name="email"
-                       placeholder="Enter email to login"
+                       placeholder="Enter email"
                        required>
             </div>
+
             <div class="form-group">
                 <label for="inputPassword">Mật khẩu</label>
                 <input type="password"
@@ -101,7 +108,7 @@
                        placeholder="Password"
                        required>
             </div>
-            <button type="submit" class="btn btn-primary">Đăng nhập</button>
+            <button type="submit" class="btn btn-primary">Đăng Ký</button>
         </form>
     </div>
     </div>
