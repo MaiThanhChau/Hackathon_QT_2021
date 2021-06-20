@@ -102,6 +102,7 @@
                        required>
             </div>
             <button type="submit" class="btn btn-primary">Đăng nhập</button>
+            <a href="{{ route('Signup') }}" class="btn btn-primary" > Đăng kí </a>
         </form>
     </div>
     </div>

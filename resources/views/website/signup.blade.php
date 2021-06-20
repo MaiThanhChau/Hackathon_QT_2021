@@ -109,6 +109,7 @@
                        required>
             </div>
             <button type="submit" class="btn btn-primary">Đăng Ký</button>
+            <a href="{{ route('Login') }}" class="btn btn-primary" > Trở về </a>
         </form>
     </div>
     </div>
