@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\admin\questionController;
 use App\Http\Controllers\admin\answerController;
 
-Route::get('home', [ App\Http\Controllers\Website\HomeController::class,'index' ])->name('Home');
+Route::get('/', [ App\Http\Controllers\Website\HomeController::class,'index' ])->middleware('auth')->name('Home');
 Route::post('input', [ App\Http\Controllers\Website\HomeController::class,'input' ])->name('Input');
-Route::get('/', [ App\Http\Controllers\Website\UserController::class,'login' ])->name('Login');
+Route::get('login', [ App\Http\Controllers\Website\UserController::class,'login' ])->name('login');
 Route::post('login', [ App\Http\Controllers\Website\UserController::class,'checklogin' ])->name('postLogin');
 Route::get('signup', [ App\Http\Controllers\Website\UserController::class,'signup' ])->name('Signup');
 Route::post('signup', [ App\Http\Controllers\Website\UserController::class,'createuser' ])->name('postSignup');

@@ -47,7 +47,7 @@ class UserController extends Controller
         }else{
             $message = 'Đăng nhập không thành công!';
             $request->session()->flash('fail-login', $message);
-            return redirect()->route('Login');
+            return redirect()->route('login');
         }
     }
 }
