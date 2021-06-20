@@ -9,7 +9,7 @@
       <span><i class="fas fa-cog"></i></span>
     </div>
   </header>
-  <main class="msger-chat">
+  <main class="msger-chat" id="msger-chat">
   @foreach( $items as $item )
     <?php
       $class = 'left';
@@ -61,3 +61,8 @@
         <button type="submit" class="msger-send-btn">Gửi</button>
     </form>
 </section>
+
+<script>
+var objDiv = document.getElementById("msger-chat");
+objDiv.scrollTop = objDiv.scrollHeight;
+</script>

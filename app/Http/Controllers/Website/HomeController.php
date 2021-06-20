@@ -48,14 +48,21 @@ class HomeController extends Controller
 
             //trả về kết quả ngẫu nhiên
             $index = rand(0,$total_answers - 1);
-            $answer = $question->answer[$index];
+			
+			if( $question->answer && isset( $question->answer[$index] ) ){
+				$answer = $question->answer[$index];
 
-            $chat->content = $answer->answer;
-            if( $answer->file ){
-                $chat->file = $answer->file;
-            }
+				$chat->content = $answer->answer;
+				if( $answer->file ){
+					$chat->file = $answer->file;
+				}
+			}else{
+				$chat->content = 'Bạn có thể đặt câu hỏi khác được không';
+				$chat->file = 'source/notfound.mp3';
+			}
+            
         }else{
-            $chat->content = 'Không hiểu';
+            $chat->content = 'Bạn có thể đặt câu hỏi khác được không';
             $chat->file = 'source/notfound.mp3';
         }
 
