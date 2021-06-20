@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index(){ 
         $items = Chats::where('user_id','=',1)->orwhere('to_user_id','=',1)->get();
-        $current_user_id = 1;
+        $current_user_id = Auth::id();
 
         $last_id = session('last_id',0);
         
@@ -26,12 +26,12 @@ class HomeController extends Controller
         $question = Question::where('question', 'like', "%$input%")->first();
         
         
-       
+        $current_user_id = Auth::id();
         
 
         //lưu tin nhắn của người dùng
         $chat = new Chats();
-        $chat->user_id = 1;
+        $chat->user_id = $current_user_id;
         $chat->to_user_id = 0;
         $chat->content = $input;
         $chat->save();
@@ -40,7 +40,7 @@ class HomeController extends Controller
         //bot trả lời
         $chat = new Chats();
         $chat->user_id = 0;
-        $chat->to_user_id = 1;
+        $chat->to_user_id = $current_user_id;
 
         if( $question ){
             $total_answers = $question->answer->count();
