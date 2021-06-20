@@ -19,7 +19,7 @@ class answerController extends Controller
      */
     public function index()
     {
-        $answers = Answer::all();
+        $answers = Answer::orderBy('id', 'desc')->get();
 
         return view('admin.answer.list', compact('answers'));
     }

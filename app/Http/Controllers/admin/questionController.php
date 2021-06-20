@@ -16,7 +16,7 @@ class questionController extends Controller
      */
     public function index()
     {
-        $questions = Question::all();
+        $questions = Question::orderBy('id', 'desc')->get();
         return view('admin.question.list', compact('questions'));
     }
 
