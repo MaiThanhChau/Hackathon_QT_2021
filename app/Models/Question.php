@@ -14,6 +14,6 @@ class Question extends Model
     public $timestamps = FALSE;
     public function answer()
     {
-        return $this->hasMany(Answer::class, 'id_answer', 'id');
+        return $this->hasMany(Answer::class,'id_question','id');
     }
 }

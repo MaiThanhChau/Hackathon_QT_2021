@@ -39,6 +39,9 @@
                     </div>
                 </div>
             </div>
+            <div class="form-group">
+            {{ $answer->file }}
+            </div>
            
         </div>
         <!-- /.card-body -->
